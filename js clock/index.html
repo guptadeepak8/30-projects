@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+      body{
+        background-color: blueviolet;
+        min-height: 95vh;
+      }
+      header{
+        height: 60px;
+        background-color: antiquewhite;
+        border-radius: 50px;
+      }
+      .logo{
+        width: 400px;
+        height: 100px;
+      }
+      .conatiner{
+       
+        display: flex;
+        justify-content: center;
+       
+      }
+      .clock{
+        margin-top: 50px;
+        width: 400px;
+        height: 400px;
+        background-color: antiquewhite;
+        border-radius: 50%;
+        position: relative;
+        padding: 2rem;
+      }
+      .clock-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-3px); /* account for the height of the clock hands */
+    }
+      .hand{
+        width: 50%;
+        height: 5px;
+        background-color: black;
+        position: absolute;
+        top: 50%;
+        transform-origin: 100%;
+        transition: all 0.05s;
+        transform: rotate(90deg);
+      }
+
+      .footer{
+        bottom:-70%;
+        text-align: center;
+        color: antiquewhite;
+        position: relative;
+      }
+      .footer h2 a{
+        text-decoration: none;
+      }
+  </style>
+</head>
+<body>
+  <header>
+    
+        <img class="logo" src="signature (1).png" alt="">
+  
+  </header>
+  <div class="conatiner">
+     <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour"></div>
+        <div class="hand minutes"></div>
+        <div class="hand seconds"></div>
+        
+      </div>
+     </div>
+  </div>
+  <footer class="footer">
+    <h2>Created by  <a href="https://github.com/guptadeepak8">Deepak😎</a></h2>
+  </footer>
+</body>
+<script>
+
+  const handSec=document.querySelector(".seconds")
+  const handMin=document.querySelector(".minutes")
+  const handHour=document.querySelector(".hour")
+  const hand=document.querySelectorAll(".hand")
+   const deg=6;
+  function date(params) {
+      const now =new Date()
+      const sec =now.getSeconds();
+      const secDeg=((sec/60)*360)+90;
+      handSec.style.transform=`rotate(${secDeg}deg)`
+      const min =now.getMinutes();
+      const minDeg=((min/60)*360)+90;
+      handMin.style.transform=`rotate(${minDeg}deg)`
+      const hour =now.getHours();
+      const hourDeg=((hour/12)*360)+90;
+      handHour.style.transform=`rotate(${hourDeg}deg)`
+  
+    
+  }
+
+  setInterval(date,1000)
+  
+</script>
+</html>
