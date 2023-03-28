@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Css variable an javascript</title>
+</head>
+<style>
+   :root{
+    --base:#ffc400;
+    --spacing:10px;
+    --blur:0px; 
+   }
+   *{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins",sans-serif;
+}
+   body{
+    display:flex;
+    flex-direction: column ;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(179, 179, 197);
+    padding: 10px;
+    border-radius: 20px;
+  }
+   img{
+    background-color: var(--base);
+    padding: var(--spacing);
+    filter: blur(var(--blur));
+    margin-top: 30px;
+   }
+
+   .controls{
+    display: flex;
+   flex-direction: column;
+    background-color: blueviolet;
+   max-width: 300px;
+   max-height: 500px;
+   padding: 30px;
+   
+   }
+   h1{
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+   }
+ .h1{
+  
+  color: var(--base);
+ }
+
+ label{
+  font-size: 1.5rem;
+ }
+   
+</style>
+<body>
+
+  <div class="container">
+    <h1>CSS  variable and <span class="h1">javascript</span></h1>
+
+
+  <div class="controls">
+    <label for="spacing">SPACING</label>
+    <input type="range" min="0" max="200" name="spacing" id="" data-sizing="px">
+    <label for="blur">BLUR</label>
+    <input type="range" min="0" max="20" name="blur" value="0" id="blur" data-sizing="px">
+    <label for="color">COLOR</label>
+    <input type="color"  name="base" id="">
+  </div>
+   
+    <img  id="image"src="https://www.thisiscolossal.com/wp-content/uploads/2019/02/moon_crop.jpg" alt="" height="200px" width="200px">
+  </div>
+</body>
+<script>
+const inputs=document.querySelectorAll(".controls input")
+
+function updatedCss(){
+  const suffix=this.dataset.sizing || ""
+  document.documentElement.style.setProperty(`--${this.name}`,this.value +suffix)
+   
+}
+
+
+
+inputs.forEach(input =>input.addEventListener("input",updatedCss))
+inputs.forEach(input =>input.addEventListener("change",updatedCss))
+
+</script>
+</html>
